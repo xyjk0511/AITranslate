@@ -1,61 +1,133 @@
-# AI ·­ÒëÖúÊÖ
+# AITranslate / AI ç¿»è¯‘åŠ©æ‰‹
 
-FastAPI ºó¶Ë + Flutter Ç°¶ËµÄÖĞÎÄµ½Ó¢ÎÄ·­ÒëĞ¡ÖúÊÖ£¬µ÷ÓÃ°¢ÀïÔÆ DashScope£¨OpenAI ¼æÈİ½Ó¿Ú£©¡£
+A lightweight translation application with a **FastAPI backend** and **Flutter frontend**, designed for practical Chinese-English translation workflows and keyword extraction.
 
-## Ä¿Â¼
-- backend£ºFastAPI ·şÎñ
-- frontend£ºFlutter ¿Í»§¶Ë
-- docs/AI_USAGE.md£ºAI Ê¹ÓÃ¼ÇÂ¼Ä£°å
+ä¸€ä¸ªç”± **FastAPI åç«¯** å’Œ **Flutter å‰ç«¯** ç»„æˆçš„è½»é‡çº§ç¿»è¯‘åº”ç”¨ï¼Œé¢å‘ä¸­è‹±ç¿»è¯‘ä¸å…³é”®è¯æå–ç­‰å®é™…ä½¿ç”¨åœºæ™¯ã€‚
 
-## Ç°ÖÃÌõ¼ş
+---
+
+## Overview / é¡¹ç›®æ¦‚è¿°
+
+**Goal / ç›®æ ‡**
+- Provide a simple end-to-end AI translation app with both backend API and mobile/web-style client support.
+- æä¾›ä¸€ä¸ªå®Œæ•´çš„ AI ç¿»è¯‘å°ç³»ç»Ÿï¼Œæ—¢æœ‰åç«¯æ¥å£ï¼Œä¹Ÿæœ‰å‰ç«¯å®¢æˆ·ç«¯ã€‚
+
+This repository is useful as a small full-stack AI application example:
+- backend API service
+- frontend client interaction
+- environment-based LLM configuration
+- practical deployment-friendly structure
+
+è¿™ä¸ªä»“åº“é€‚åˆä½œä¸ºä¸€ä¸ªå°å‹å…¨æ ˆ AI åº”ç”¨ç¤ºä¾‹ï¼Œä½“ç°ï¼š
+- åç«¯ API æœåŠ¡
+- å‰ç«¯äº¤äº’
+- åŸºäºç¯å¢ƒå˜é‡çš„æ¨¡å‹æ¥å…¥
+- æ›´æ¥è¿‘å®é™…éƒ¨ç½²çš„é¡¹ç›®ç»“æ„
+
+---
+
+## Architecture / æ¶æ„
+
+```text
+frontend (Flutter)
+    â†“
+FastAPI backend
+    â†“
+LLM provider (DashScope / compatible API)
+```
+
+### Main capabilities / ä¸»è¦èƒ½åŠ›
+- translate input text from Chinese to English
+- return structured results to the client
+- extract keywords alongside translation
+- expose a clean health check and API endpoint
+
+---
+
+## Repository Structure / ä»“åº“ç»“æ„
+
+```text
+backend/           # FastAPI backend service
+frontend/          # Flutter client
+docs/              # project notes and usage docs
+README.md          # project overview
+```
+
+---
+
+## Backend / åç«¯
+
+The backend is built with **FastAPI** and exposes a translation endpoint plus a health check.
+
+åç«¯ä½¿ç”¨ **FastAPI** å®ç°ï¼Œæä¾›ç¿»è¯‘æ¥å£å’Œå¥åº·æ£€æŸ¥æ¥å£ã€‚
+
+### Typical setup / åŸºæœ¬å¯åŠ¨æ–¹å¼
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app:app --reload --host 0.0.0.0 --port 8000
+```
+
+### Health check / å¥åº·æ£€æŸ¥
+```bash
+curl http://127.0.0.1:8000/health
+```
+
+---
+
+## Frontend / å‰ç«¯
+
+The frontend is built with **Flutter**, making the project suitable for mobile, desktop, or web-style experimentation.
+
+å‰ç«¯ä½¿ç”¨ **Flutter**ï¼Œé€‚åˆåšç§»åŠ¨ç«¯ã€æ¡Œé¢ç«¯æˆ– Web ç«¯é£æ ¼çš„å®éªŒã€‚
+
+### Typical setup / åŸºæœ¬å¯åŠ¨æ–¹å¼
+```bash
+cd frontend
+flutter pub get
+flutter run
+```
+
+---
+
+## Why this project matters / ä¸ºä»€ä¹ˆè¿™ä¸ªé¡¹ç›®å€¼å¾—ä¿ç•™
+
+This is not the strongest ML project in the portfolio, but it is still a useful example of:
+- integrating an LLM-backed backend with a real client
+- handling environment-based API configuration
+- building a small but complete AI product flow
+
+å®ƒè™½ç„¶ä¸æ˜¯ä½ æœ€å¼ºçš„ ML é¡¹ç›®ï¼Œä½†ä»ç„¶ä½“ç°äº†ï¼š
+- ç”¨çœŸå®å‰åç«¯è¿æ¥ LLM æœåŠ¡
+- é€šè¿‡ç¯å¢ƒå˜é‡ç®¡ç†æ¨¡å‹æ¥å…¥
+- æ„å»ºä¸€ä¸ªå®Œæ•´çš„å°å‹ AI äº§å“æµç¨‹
+
+---
+
+## Reproducibility / å¤ç°è¯´æ˜
+
+### Prerequisites
 - Python 3.10+
-- Flutter SDK£¨ÒÑÅäÖÃ Android Ä£ÄâÆ÷»ò×ÀÃæ/Web ¿ª·¢»·¾³£©
-- DashScope API Key£¨»·¾³±äÁ¿ `DASHSCOPE_API_KEY` »ò `backend/.env`£©
+- Flutter SDK
+- an API key configured through environment variables
 
-## ºó¶ËÔËĞĞ
-1. ½øÈëºó¶ËÄ¿Â¼²¢°²×°ÒÀÀµ£º
-   ```bash
-   cd backend
-   pip install -r requirements.txt
-   ```
-2. ÅäÖÃ»·¾³±äÁ¿£¨ÈÎÑ¡ÆäÒ»£©£º
-   - ÔÚÏµÍ³»·¾³±äÁ¿ÀïÉèÖÃ `DASHSCOPE_API_KEY`¡£
-   - »ò¸´ÖÆ `.env` Ä£°å£º
-     ```bash
-     cp .env.example .env
-     # ±à¼­ .env Ğ´Èë DASHSCOPE_API_KEY=ÄãµÄÃÜÔ¿
-     ```
-3. Æô¶¯·şÎñ£¨Ä¬ÈÏ¶Ë¿Ú 8000£©£º
-   ```bash
-   uvicorn app:app --reload --host 0.0.0.0 --port 8000
-   ```
-4. ½¡¿µ¼ì²é£º`curl http://127.0.0.1:8000/health`
-5. ·­Òë½Ó¿ÚÊ¾Àı£º
-   ```bash
-   curl -X POST http://127.0.0.1:8000/translate \
-     -H "Content-Type: application/json" \
-     -d '{"text": "½ñÌìÌìÆøºÜºÃ"}'
-   ```
+### Environment variables
+Set your provider key in the backend environment file, for example:
+```bash
+DASHSCOPE_API_KEY=your_api_key_here
+```
 
-## Ç°¶ËÔËĞĞ£¨Flutter£©
-1. °²×°ÒÀÀµ£º
-   ```bash
-   cd frontend
-   flutter pub get
-   ```
-2. È·ÈÏºó¶ËµØÖ·£º`frontend/lib/main.dart` µÄ `backendBaseUrl` ³£Á¿×¢ÊÍËµÃ÷£º
-   - Android Ä£ÄâÆ÷£º`http://10.0.2.2:8000`
-   - ×ÀÃæ / ä¯ÀÀÆ÷µ÷ÊÔ£º`http://127.0.0.1:8000`
-   - Õæ»ú£º¸ÄÎªËŞÖ÷»úµÄ¾ÖÓòÍø IP£¬ÀıÈç `http://192.168.x.x:8000`
-3. ÔËĞĞ£º
-   - Android Ä£ÄâÆ÷£º`flutter run -d emulator-id`
-   - Flutter Web£º`flutter run -d chrome`
-   - ×ÀÃæ£¨Èç Windows£©£º`flutter run -d windows`
+---
 
-½çÃæ£ºÊäÈë¿òÊäÈëÖĞÎÄ ¡ú µã»÷¡°·­Òë¡± ¡ú Õ¹Ê¾Ó¢ÎÄ translation ºÍ 3 ¸ö keywords£»ÇëÇóÊ±ÓĞ loading£¬Ê§°Ü»áÓĞ SnackBar/ºì×ÖÌáÊ¾¡£
+## Future improvements / åç»­å¯æ”¹è¿›æ–¹å‘
 
-## ÆäËûËµÃ÷
-- ºó¶ËÒÑ¿ªÆô CORS£¨ÔÊĞí±¾µØ¿çÓòµ÷ÊÔ£©¡£
-- LLM Êä³ö½âÎö¾ß±¸Èİ´í£º³¢ÊÔ `json.loads`£¬ÌáÈ¡×îÍâ²ã JSON£¬ÔÙÓÃÄ£ĞÍ¾À´íÖØÊÔ£»keywords ×îÖÕ±£Ö¤³¤¶È 3¡£
-- ½¡×³ĞÔ£ºtext Îª¿Õ·µ»Ø 400£¬²¢´øÃ÷È·ĞÅÏ¢¡£
+- improve README examples and screenshots
+- add request/response schema examples
+- unify backend/frontend local development commands
+- add small demo GIFs or UI screenshots
 
+å¦‚æœç»§ç»­æ•´ç†ï¼Œè¿™ä¸ªé¡¹ç›®æœ€å€¼å¾—è¡¥çš„æ˜¯ï¼š
+- README ç¤ºä¾‹ä¸æˆªå›¾
+- è¯·æ±‚ / å“åº”ç¤ºä¾‹
+- æ›´ç»Ÿä¸€çš„å‰åç«¯å¯åŠ¨æ–¹å¼
+- ç•Œé¢æ¼”ç¤ºå›¾æˆ–å½•å±
